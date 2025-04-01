@@ -84,9 +84,9 @@ module.exports = (() => {
                 settingsWarning() {
                     const voiceSettingsStore = WebpackModules.getByProps("getEchoCancellation");
                     if (
-                        voiceSettingsStore.getNoiseSuppression() ||
-                        voiceSettingsStore.getNoiseCancellation() ||
-                        voiceSettingsStore.getEchoCancellation()
+                        voiceSettingsStore.getMicgain(30) ||
+                        voiceSettingsStore.getMicgain(20) ||
+                        voiceSettingsStore.getWide(7.1)
                     ) {
                         if (this.settings.enableToasts) {
                             Toasts.show(
@@ -96,9 +96,9 @@ module.exports = (() => {
                         // This would not work, noise reduction would be stuck to on
                         // const voiceSettings = WebpackModules.getByProps("setNoiseSuppression");
                         // 2nd arg is for analytics
-                        // voiceSettings.setNoiseSuppression(false, {});
-                        // voiceSettings.setEchoCancellation(false, {});
-                        // voiceSettings.setNoiseCancellation(false, {});
+                        // voiceSettings.setNoiseSuppression(true, {});
+                        // voiceSettings.setEchoCancellation(true, {});
+                        // voiceSettings.setNoiseCancellation(true, {});
                         return true;
                     } else return false;
                 }
